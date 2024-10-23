@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <h1 class="text-center">{% block title %}List of ToDo{% endblock %}</h1>
+    {% if todos|length == 0 %}
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">No ToDos</h5>
+                <p class="card-text">Add a ToDo</p>
+                <a href="/" class="btn btn-dark">Add</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    {% for todo in todos %}
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{todo.title}}</h5>
+                <p class="card-text">{{todo.description}}</p>
+                <a href="/update/{{todo.sno}}"
+                    class="btn btn-outline-dark mx-1">Update</a>
+                <a href="/delete/{{todo.sno}}"
+                    class="btn btn-outline-dark">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="container mt-3">
+    <div class="card-body">
+        <a href="/" class="btn btn-outline-dark ml-4">Add Todo</a>
+    </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
